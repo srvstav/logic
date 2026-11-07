@@ -1,0 +1,62 @@
+[
+  {
+    "id": "photo-0",
+    "title": "CMS detector",
+    "file": "photo-0.webp",
+    "license": "CC BY-SA 4.0",
+    "author": "SimonWaldherr",
+    "source": "https://commons.wikimedia.org/wiki/File:CERN_LHC_CMS_11.jpg",
+    "width": 720,
+    "height": 480
+  },
+  {
+    "id": "photo-1",
+    "title": "Wendelstein 7-X",
+    "file": "photo-1.webp",
+    "license": "CC BY 4.0",
+    "author": "SimonWaldherr",
+    "source": "https://commons.wikimedia.org/wiki/File:Wendelstein_7-X.jpg",
+    "width": 640,
+    "height": 480
+  },
+  {
+    "id": "photo-3",
+    "title": "Webb primary mirror",
+    "file": "photo-3.webp",
+    "license": "Public domain",
+    "author": "NASA/MSFC/David Higginbotham",
+    "source": "https://commons.wikimedia.org/wiki/File:James_Webb_Primary_Mirror.jpg",
+    "width": 721,
+    "height": 480
+  },
+  {
+    "id": "photo-5",
+    "title": "NIF target chamber",
+    "file": "photo-5.webp",
+    "license": "CC BY-SA 3.0",
+    "author": "Lawrence Livermore National Security",
+    "source": "https://commons.wikimedia.org/wiki/File:National_Ignition_Facility%27s_target_chamber.jpg",
+    "width": 721,
+    "height": 480
+  },
+  {
+    "id": "photo-7",
+    "title": "Millau Viaduct",
+    "file": "photo-7.webp",
+    "license": "CC BY-SA 4.0",
+    "author": "W. Bulach",
+    "source": "https://commons.wikimedia.org/wiki/File:00_0237_Millau_-_D%C3%A9partement_Aveyron.jpg",
+    "width": 720,
+    "height": 480
+  },
+  {
+    "id": "ribosome",
+    "title": "Bacterial ribosome \u00b7 4V9D",
+    "file": "ribosome.webp",
+    "license": "CC BY 4.0",
+    "author": "RCSB PDB / PDB-101",
+    "source": "https://pdb101.rcsb.org/global-health/antimicrobial-resistance/drugs/antibiotics/protein-synthesis/ribosome/ribosome",
+    "width": 1170,
+    "height": 646
+  }
+]

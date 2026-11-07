@@ -1,0 +1,12 @@
+import {build} from 'esbuild';
+import fs from 'node:fs/promises';
+await fs.rm('dist',{recursive:true,force:true});
+await fs.rm('docs',{recursive:true,force:true});
+await fs.mkdir('dist',{recursive:true});
+await build({entryPoints:['src/logic.js'],outfile:'dist/logic.js',bundle:true,format:'esm',minify:true,target:'es2022',legalComments:'linked'});
+await fs.copyFile('src/index.html','dist/index.html');
+await fs.cp('assets','dist/assets',{recursive:true});
+await fs.writeFile('dist/.nojekyll','');
+await fs.copyFile('node_modules/three/LICENSE','dist/THREE-LICENSE.txt');
+await fs.cp('dist','docs',{recursive:true});
+console.log('Built portable Logic engine and GitHub Pages site.');
