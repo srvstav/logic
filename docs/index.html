@@ -1,3 +1,77 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090a0c"><title>Logic</title><style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#090a0c;color:#eeefef;font:12px system-ui}main,section,#neural,#plates,#plates img,#math{position:absolute;inset:0;width:100%;height:100%}main{touch-action:pan-x;cursor:crosshair;--paper:#090a0c;--ink:#eeefef;background:var(--paper);color:var(--ink)}main.light{--paper:#eeefec;--ink:#172027}section{overflow:hidden}#plates{display:grid;place-items:center}#plates img{object-fit:contain;transform-origin:var(--px,50%) var(--py,50%);transition:transform .65s cubic-bezier(.2,.75,.2,1),opacity .22s;will-change:transform}#plates.zoom img{transform:scale(1.85)}#math{object-fit:cover}header,footer{position:absolute;left:max(22px,3vw);right:max(22px,3vw);display:flex;align-items:center;justify-content:space-between;gap:12px;pointer-events:none}header{top:22px}footer{bottom:22px;align-items:flex-end}.tag,nav,.info{background:var(--paper);color:var(--ink);padding:8px 11px}.tag,.counter{font:10px monospace;letter-spacing:.16em}.info{max-width:62vw}.info strong{font-size:clamp(16px,2vw,31px);font-weight:480}.info small{display:block;margin-top:4px}.info a{color:inherit;pointer-events:auto}.hint{opacity:.7;font:10px monospace}nav{display:flex;align-items:center;gap:5px;pointer-events:auto}button{background:none;color:inherit;border:0;cursor:pointer;font:16px monospace;padding:7px}button:focus-visible,button:hover{outline:1px solid currentColor}.hidden{visibility:hidden}@media(max-width:650px){header,footer{left:12px;right:12px}.hint{display:none}footer{gap:4px}.info{max-width:51vw}nav{padding:4px;gap:0}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-@keyframes reveal{from{transform:scale(1.13) translateX(-1%)}to{transform:scale(1) translateX(0)}}#plates:not(.zoom) img.live{animation:reveal 8.5s cubic-bezier(.18,.56,.38,1) both} @media(prefers-reduced-motion:reduce){#plates img.live{animation:none!important}}header,footer{z-index:10} .picker{pointer-events:auto;display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--paper);color:var(--ink)}select{font:inherit;color:inherit;background:var(--paper);border:1px solid #778080;padding:8px;max-width:68vw}nav button{min-height:44px;min-width:40px}#next{white-space:nowrap;border:1px solid currentColor} @media(max-width:650px){footer{flex-wrap:wrap}.info{max-width:100%}} </style></head><body><main id="app"><section id="neural"></section><section id="plates" class="hidden"><img id="plate" alt=""></section><canvas id="math" class="hidden"></canvas><header><span class="tag">L O G I C</span><label class="picker">Scene <select id="jump" aria-label="Jump to scene"></select></label></header><footer><div class="info"><strong id="title">Dendritic arbor</strong><small id="credit"></small></div><nav aria-label="Scene controls"><button id="prev" aria-label="Previous scene">←</button><span class="counter" id="count"></span><button id="next" aria-label="Next scene">Next →</button><button id="pause" aria-label="Pause autoplay">Ⅱ</button><button id="theme" aria-label="Change theme">◐</button></nav></footer></main><script type="module" src="./tour.js?v=3"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151c1c">
+  <meta name="description" content="An interactive atlas of the structures that shape our world, from star-forming clouds to neural circuits and fractal boundaries.">
+  <title>Logic · Atlas of hidden structures</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./atlas.css">
+  <script type="module" src="./atlas.js"></script>
+</head>
+<body>
+  <main id="main" aria-label="Logic interactive atlas">
+    <figure id="atlas" aria-label="Atlas exhibit">
+      <div class="view" id="view">
+        <img id="space-image" src="./assets/sun-304.webp" srcset="./assets/sun-304-720.webp 720w, ./assets/sun-304.webp 1280w"
+          sizes="min(100vw, 100vh)" width="1280" height="1280"
+          alt="The full solar disk through a 30.4 nanometer extreme ultraviolet filter, recorded by NASA’s Solar Dynamics Observatory."
+          fetchpriority="high">
+        <div class="frame" aria-hidden="true"></div>
+        <div class="reticle" id="reticle" aria-hidden="true" hidden><i></i></div>
+      </div>
+    </figure>
+
+    <button type="button" class="book-toggle" id="book-toggle" aria-label="Open field book" aria-controls="book" aria-expanded="false" data-js hidden>
+      <img src="./assets/book.svg" alt="" width="24" height="24">
+    </button>
+
+    <aside id="book" class="book" aria-labelledby="book-heading" hidden>
+      <header class="book-header">
+        <div><h1 id="book-heading">Field book</h1><p>Logic · Atlas of hidden structures</p></div>
+        <button type="button" id="book-close" aria-label="Close field book">×</button>
+      </header>
+      <nav aria-label="Exhibits" id="exhibits">
+        <a href="#space" aria-current="true">Space</a>
+        <a href="#connectome">Connectomics</a>
+        <a href="#neuron">Neuroscience</a>
+        <a href="#newton">Mathematics</a>
+      </nav>
+      <div class="plate-copy" aria-labelledby="plate-title">
+        <p id="kind" class="eyebrow">Space science · Observation</p>
+        <h2 id="plate-title" tabindex="-1">The Sun in two wavelengths</h2>
+        <p id="plate-text">Two extreme-ultraviolet observations from NASA’s Solar Dynamics Observatory.</p>
+        <div id="metric" class="metric"></div>
+      </div>
+      <div class="toolbar" id="toolbar"></div>
+      <div id="notes"></div>
+      <p class="equation" id="equation" hidden></p>
+      <div id="caption" class="caption"></div>
+      <details class="archive">
+        <summary>Engineering archive</summary>
+        <nav aria-label="Engineering archive" id="archive-items"></nav>
+      </details>
+      <div class="book-actions">
+        <button type="button" id="play" aria-label="Play guided tour"><span aria-hidden="true">▷</span> <span>Play tour</span></button>
+        <button type="button" id="theme" aria-label="Theme: system. Switch book theme"><span aria-hidden="true">◐</span></button>
+        <button type="button" id="show-engine" aria-controls="engine-area" aria-expanded="false">Engine preview</button>
+      </div>
+      <div id="engine-area" hidden></div>
+      <footer>
+        <a href="https://github.com/srvstav/logic">Source and embed guide</a>
+        <a href="https://github.com/srvstav/logic/blob/main/CREDITS.md">Credits and licenses</a>
+      </footer>
+    </aside>
+  </main>
+
+  <noscript>
+    <details class="fallback">
+      <summary aria-label="Open field book"><img src="./assets/book.svg" alt="" width="24" height="24"></summary>
+      <p>The Sun in two wavelengths. NASA/SDO and NASA’s Scientific Visualization Studio.</p>
+      <a href="https://svs.gsfc.nasa.gov/3999/">Image and release</a>
+    </details>
+  </noscript>
+  <div class="sr-only" id="announcement" role="status"></div>
+</body>
+</html>

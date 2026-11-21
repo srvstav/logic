@@ -1,1 +1,77 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#05090d"><meta name="description" content="Logic — a living atlas of real engineering and scientific structures."><title>Logic · A living atlas</title><style>html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05090d;cursor:crosshair}logic-canvas{display:block;width:100%;height:100dvh}</style></head><body><logic-canvas assets="./assets/" theme="auto"></logic-canvas><script type="module" src="./logic.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151c1c">
+  <meta name="description" content="An interactive atlas of the structures that shape our world, from star-forming clouds to neural circuits and fractal boundaries.">
+  <title>Logic · Atlas of hidden structures</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./atlas.css">
+  <script type="module" src="./atlas.js"></script>
+</head>
+<body>
+  <main id="main" aria-label="Logic interactive atlas">
+    <figure id="atlas" aria-label="Atlas exhibit">
+      <div class="view" id="view">
+        <img id="space-image" src="./assets/sun-304.webp" srcset="./assets/sun-304-720.webp 720w, ./assets/sun-304.webp 1280w"
+          sizes="min(100vw, 100vh)" width="1280" height="1280"
+          alt="The full solar disk through a 30.4 nanometer extreme ultraviolet filter, recorded by NASA’s Solar Dynamics Observatory."
+          fetchpriority="high">
+        <div class="frame" aria-hidden="true"></div>
+        <div class="reticle" id="reticle" aria-hidden="true" hidden><i></i></div>
+      </div>
+    </figure>
+
+    <button type="button" class="book-toggle" id="book-toggle" aria-label="Open field book" aria-controls="book" aria-expanded="false" data-js hidden>
+      <img src="./assets/book.svg" alt="" width="24" height="24">
+    </button>
+
+    <aside id="book" class="book" aria-labelledby="book-heading" hidden>
+      <header class="book-header">
+        <div><h1 id="book-heading">Field book</h1><p>Logic · Atlas of hidden structures</p></div>
+        <button type="button" id="book-close" aria-label="Close field book">×</button>
+      </header>
+      <nav aria-label="Exhibits" id="exhibits">
+        <a href="#space" aria-current="true">Space</a>
+        <a href="#connectome">Connectomics</a>
+        <a href="#neuron">Neuroscience</a>
+        <a href="#newton">Mathematics</a>
+      </nav>
+      <div class="plate-copy" aria-labelledby="plate-title">
+        <p id="kind" class="eyebrow">Space science · Observation</p>
+        <h2 id="plate-title" tabindex="-1">The Sun in two wavelengths</h2>
+        <p id="plate-text">Two extreme-ultraviolet observations from NASA’s Solar Dynamics Observatory.</p>
+        <div id="metric" class="metric"></div>
+      </div>
+      <div class="toolbar" id="toolbar"></div>
+      <div id="notes"></div>
+      <p class="equation" id="equation" hidden></p>
+      <div id="caption" class="caption"></div>
+      <details class="archive">
+        <summary>Engineering archive</summary>
+        <nav aria-label="Engineering archive" id="archive-items"></nav>
+      </details>
+      <div class="book-actions">
+        <button type="button" id="play" aria-label="Play guided tour"><span aria-hidden="true">▷</span> <span>Play tour</span></button>
+        <button type="button" id="theme" aria-label="Theme: system. Switch book theme"><span aria-hidden="true">◐</span></button>
+        <button type="button" id="show-engine" aria-controls="engine-area" aria-expanded="false">Engine preview</button>
+      </div>
+      <div id="engine-area" hidden></div>
+      <footer>
+        <a href="https://github.com/srvstav/logic">Source and embed guide</a>
+        <a href="https://github.com/srvstav/logic/blob/main/CREDITS.md">Credits and licenses</a>
+      </footer>
+    </aside>
+  </main>
+
+  <noscript>
+    <details class="fallback">
+      <summary aria-label="Open field book"><img src="./assets/book.svg" alt="" width="24" height="24"></summary>
+      <p>The Sun in two wavelengths. NASA/SDO and NASA’s Scientific Visualization Studio.</p>
+      <a href="https://svs.gsfc.nasa.gov/3999/">Image and release</a>
+    </details>
+  </noscript>
+  <div class="sr-only" id="announcement" role="status"></div>
+</body>
+</html>

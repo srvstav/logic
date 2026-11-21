@@ -1,0 +1,1 @@
+import{d as o}from"./chunks/chunk-VNYM5FNT.js";var h=0;self.onmessage=({data:e})=>{let r=++h,n=new Uint8ClampedArray(e.width*e.height*4),i=0;function t(){if(r!==h)return;let a=performance.now();do o(n,e,i,i+1),i++;while(i<e.height&&performance.now()-a<10);i<e.height?setTimeout(t,0):self.postMessage({id:e.id,width:e.width,height:e.height,pixels:n},[n.buffer])}t()};
